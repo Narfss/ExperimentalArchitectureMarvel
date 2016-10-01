@@ -5,19 +5,16 @@ import com.fmsirvent.experimentalarchitecturemarvel.repository.exceptions.Reposi
 import com.fmsirvent.experimentalarchitecturemarvel.repository.local.orm.FavouriteCharactersORMController;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
-import rx.Observable;
-import rx.Observer;
 
-public class FavouriteCharactersDatabase implements FavouriteCharactersLocalRepository {
+public class FavouriteCharactersDatabase  implements FavouriteCharactersLocalRepository {
     private Integer obserbableId = 0;
-    private Map<Integer, Observer<MarvelCharacter>> observers;
+    private Map<Integer, Observer> observers;
 
     @Inject
     public FavouriteCharactersDatabase() {
@@ -43,9 +40,8 @@ public class FavouriteCharactersDatabase implements FavouriteCharactersLocalRepo
             ormController.addOrUpdateFavouriteCharacters(character);
             FavouriteCharacterEntity favouriteCharacter = ormController.getFavouriteCharacter(character.getId());
             MarvelCharacter marvelCharacter = CharacterEntityMapper.map(favouriteCharacter);
-            Observable<MarvelCharacter> obserbable = Observable.just(marvelCharacter);
-            for (Observer<MarvelCharacter> observer : observers.values()) {
-                obserbable.subscribe(observer);
+            for (Observer observer : observers.values()) {
+                observer.onChange();
             }
         } catch (SQLException e) {
             throw new RepositoryException();
@@ -53,9 +49,10 @@ public class FavouriteCharactersDatabase implements FavouriteCharactersLocalRepo
     }
 
     @Override
-    public int subscribe(Observer<MarvelCharacter> observer) {
+    public int subscribe(Observer observer) {
         obserbableId++;
         this.observers.put(obserbableId, observer);
+        observer.onSubscribe(obserbableId);
         return obserbableId;
     }
 

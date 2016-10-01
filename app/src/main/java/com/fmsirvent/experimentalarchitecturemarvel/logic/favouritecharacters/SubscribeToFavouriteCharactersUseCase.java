@@ -1,30 +1,25 @@
 package com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters;
 
-import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.local.favouritecharacter.FavouriteCharactersLocalRepository;
-import com.fmsirvent.experimentalarchitecturemarvel.view.characters.CharactersViewMapper;
-import com.fmsirvent.experimentalarchitecturemarvel.view.characters.MarvelCharacterMVO;
 
 import javax.inject.Inject;
 
-import rx.Observer;
 
 public class SubscribeToFavouriteCharactersUseCase {
     private final FavouriteCharactersLocalRepository favouriteCharactersLocalRepository;
     private Callback callback;
-    private Observer<MarvelCharacter>
-            observer = new Observer<MarvelCharacter>() {
-                @Override
-                public void onCompleted() { }
+    private FavouriteCharactersLocalRepository.Observer
+            observer = new FavouriteCharactersLocalRepository.Observer() {
+                            @Override
+                            public void onChange() {
+                                callback.onChange();
+                            }
 
-                @Override
-                public void onError(Throwable e) { }
-
-                @Override
-                public void onNext(MarvelCharacter marvelCharacter) {
-                    callback.onFavouriteAdded(CharactersViewMapper.map(marvelCharacter));
-                }
-            };
+                            @Override
+                            public void onSubscribe(int subscribeId) {
+                                callback.onSubscribe(subscribeId);
+                            }
+                        };
 
     @Inject
     public SubscribeToFavouriteCharactersUseCase(FavouriteCharactersLocalRepository favouriteCharactersLocalRepository) {
@@ -38,6 +33,6 @@ public class SubscribeToFavouriteCharactersUseCase {
 
     public interface Callback {
         void onSubscribe(int subscriptionId);
-        void onFavouriteAdded(MarvelCharacterMVO marvelCharacterMVO);
+        void onChange();
     }
 }

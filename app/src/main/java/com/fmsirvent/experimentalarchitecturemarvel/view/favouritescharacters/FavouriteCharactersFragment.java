@@ -88,7 +88,7 @@ public class FavouriteCharactersFragment extends BaseFragment implements RenderF
     }
 
     @Override
-    public void renderNewFavouriteCharacter(MarvelCharacterMVO marvelCharacterMVO) {
+    public void onDataChanged() {
         requestFavouriteCharacters();
     }
 

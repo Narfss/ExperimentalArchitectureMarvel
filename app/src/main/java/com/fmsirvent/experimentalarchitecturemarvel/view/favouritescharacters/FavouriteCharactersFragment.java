@@ -6,18 +6,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.fmsirvent.experimentalarchitecturemarvel.Application;
 import com.fmsirvent.experimentalarchitecturemarvel.R;
+import com.fmsirvent.experimentalarchitecturemarvel.utils.ClickableRVRendererAdapter;
 import com.fmsirvent.experimentalarchitecturemarvel.view.base.BaseFragment;
-import com.fmsirvent.experimentalarchitecturemarvel.view.characters.CharacterRenderer;
 import com.fmsirvent.experimentalarchitecturemarvel.view.characters.MarvelCharacterMVO;
 import com.fmsirvent.experimentalarchitecturemarvel.view.internal.di.ActivityModule;
 import com.fmsirvent.experimentalarchitecturemarvel.view.internal.di.DaggerActivityComponent;
 import com.pedrogomez.renderers.AdapteeCollection;
 import com.pedrogomez.renderers.ListAdapteeCollection;
-import com.pedrogomez.renderers.RVRendererAdapter;
 import com.pedrogomez.renderers.RendererBuilder;
 
 import java.util.List;
@@ -29,7 +27,7 @@ import butterknife.BindView;
 public class FavouriteCharactersFragment extends BaseFragment implements RenderFavouriteCharactersView {
     @Inject FavouriteCharactersPresenter presenter;
     @BindView(R.id.favourite_characters) RecyclerView recyclerView;
-    private RVRendererAdapter<MarvelCharacterMVO> adapter;
+    private ClickableRVRendererAdapter<MarvelCharacterMVO> adapter;
     private LinearLayoutManager layoutManager;
     private boolean loading;
 
@@ -60,6 +58,18 @@ public class FavouriteCharactersFragment extends BaseFragment implements RenderF
                 .inject(this);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.subscribeToFavouriteCharacters();
+    }
+
+    @Override
+    public void onStop() {
+        presenter.unsubscribeToFavouriteCharacters();
+        super.onStop();
+    }
+
     private void requestFavouriteCharacters() {
         loading = true;
         presenter.getFavouriteCharacters();
@@ -68,12 +78,16 @@ public class FavouriteCharactersFragment extends BaseFragment implements RenderF
     @Override
     public void renderFavouriteCharacters(List<MarvelCharacterMVO> characters) {
         if (adapter != null) {
-            adapter.addAll(characters);
+            adapter.replace(characters);
             adapter.notifyDataSetChanged();
             loading = false;
         }
     }
 
+    @Override
+    public void renderNewFavouriteCharacter(MarvelCharacterMVO marvelCharacterMVO) {
+        requestFavouriteCharacters();
+    }
 
     private void configureRecycleView() {
         layoutManager = new LinearLayoutManager(getActivity());
@@ -81,7 +95,13 @@ public class FavouriteCharactersFragment extends BaseFragment implements RenderF
         recyclerView.setLayoutManager(layoutManager);
         AdapteeCollection<MarvelCharacterMVO> adapterCollection = new ListAdapteeCollection<>();
         RendererBuilder<MarvelCharacterMVO> rendererBuilder = new FavouriteCharacterRendererBuilder();
-        adapter = new RVRendererAdapter<>(rendererBuilder, adapterCollection);
+        adapter = new ClickableRVRendererAdapter<>(rendererBuilder, adapterCollection);
+        adapter.setOnItemClick(new ClickableRVRendererAdapter.OnItemClick() {
+            @Override
+            public void onItemClick(int position) {
+
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 }

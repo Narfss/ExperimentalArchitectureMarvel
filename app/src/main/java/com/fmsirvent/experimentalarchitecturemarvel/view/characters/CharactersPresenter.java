@@ -3,10 +3,8 @@ package com.fmsirvent.experimentalarchitecturemarvel.view.characters;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.GetCharactersUseCase;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.AddFavouriteCharacterUseCase;
-import com.fmsirvent.experimentalarchitecturemarvel.view.favouritescharacters.RenderFavouriteCharactersView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;

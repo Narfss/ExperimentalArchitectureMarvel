@@ -14,7 +14,22 @@ public class FavouriteCharactersORMController extends ORMController {
         ORMHelper ormHelper = getHelper();
         if (ormHelper != null) {
             Dao<FavouriteCharacterEntity, Integer> dao = ormHelper.getFavouriteCharacterEntityDao();
-            favouriteCharacterEntities = dao.queryBuilder().query();
+            favouriteCharacterEntities = dao.queryBuilder()
+                    .orderBy(FavouriteCharacterEntity.TIMESTAMP, false)
+                    .query();
+        }
+        return favouriteCharacterEntities;
+    }
+
+    public FavouriteCharacterEntity getFavouriteCharacter(int id) throws SQLException {
+        FavouriteCharacterEntity favouriteCharacterEntities = null;
+        ORMHelper ormHelper = getHelper();
+        if (ormHelper != null) {
+            Dao<FavouriteCharacterEntity, Integer> dao = ormHelper.getFavouriteCharacterEntityDao();
+            favouriteCharacterEntities = dao.queryBuilder()
+                    .where()
+                    .eq(FavouriteCharacterEntity.ID, id)
+                    .queryForFirst();
         }
         return favouriteCharacterEntities;
     }

@@ -9,6 +9,8 @@ import com.pedrogomez.renderers.RVRendererAdapter;
 import com.pedrogomez.renderers.RendererBuilder;
 import com.pedrogomez.renderers.RendererViewHolder;
 
+import java.util.List;
+
 public class ClickableRVRendererAdapter<T> extends RVRendererAdapter<T> {
     private OnItemClick onItemClick;
 
@@ -40,6 +42,11 @@ public class ClickableRVRendererAdapter<T> extends RVRendererAdapter<T> {
             });
         }
         return rendererViewHolder;
+    }
+
+    public void replace(List<T> characters) {
+        clear();
+        addAll(characters);
     }
 
     public interface OnItemClick {

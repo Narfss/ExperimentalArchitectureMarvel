@@ -36,6 +36,7 @@ public class CharacterEntityMapper {
                 .setModified(character.getModified())
                 .setThumbnailPath(character.getThumbnail().getPath())
                 .setThumbnailExtension(character.getThumbnail().getExtension())
+                .setTimestamp(System.currentTimeMillis())
                 .build();
     }
 }

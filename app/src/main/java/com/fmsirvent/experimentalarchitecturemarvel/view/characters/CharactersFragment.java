@@ -65,7 +65,7 @@ public class CharactersFragment extends BaseFragment implements RenderCharacters
     @Override
     public void renderCharacters(List<MarvelCharacterMVO> characters) {
         if (adapter != null) {
-            adapter.addAll(characters);
+            adapter.replace(characters);
             adapter.notifyDataSetChanged();
             loading = false;
         }

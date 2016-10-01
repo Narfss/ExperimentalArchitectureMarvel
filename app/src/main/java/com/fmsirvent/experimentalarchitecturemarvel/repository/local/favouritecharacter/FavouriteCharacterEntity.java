@@ -1,16 +1,19 @@
 package com.fmsirvent.experimentalarchitecturemarvel.repository.local.favouritecharacter;
 
+import android.app.Notification;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "favourite_character")
 public class FavouriteCharacterEntity {
-    private static final String ID = "id";
+    public static final String ID = "id";
     private static final String NAME = "name";
     private static final String DESCRIPTION = "description";
     private static final String MODIFIED = "modified";
     private static final String THUMBNAIL_PATH = "thumbnail_path";
     private static final String THUMBNAIL_EXTENSION = "thumbnail_extension";
+    public static final String TIMESTAMP = "timestamp";
 
     @DatabaseField(columnName = ID, id = true)
     int id;
@@ -24,6 +27,8 @@ public class FavouriteCharacterEntity {
     String thumbnailPath;
     @DatabaseField(columnName = THUMBNAIL_EXTENSION)
     String thumbnailExtension;
+    @DatabaseField(columnName = TIMESTAMP)
+    long timestamp;
 
     public int getId() {
         return id;
@@ -56,6 +61,7 @@ public class FavouriteCharacterEntity {
         String modified;
         String thumbnailPath;
         String thumbnailExtension;
+        private long timestamp;
 
         public Builder setId(int id) {
             this.id = id;
@@ -87,6 +93,11 @@ public class FavouriteCharacterEntity {
             return this;
         }
 
+        public Builder setTimestamp(long timestamp) {
+            this.timestamp = timestamp;
+            return this;
+        }
+
         public FavouriteCharacterEntity build() {
             FavouriteCharacterEntity favouriteCharacterEntity = new FavouriteCharacterEntity();
             favouriteCharacterEntity.id = id;
@@ -95,6 +106,7 @@ public class FavouriteCharacterEntity {
             favouriteCharacterEntity.modified = modified;
             favouriteCharacterEntity.thumbnailPath = thumbnailPath;
             favouriteCharacterEntity.thumbnailExtension = thumbnailExtension;
+            favouriteCharacterEntity.timestamp = timestamp;
             return favouriteCharacterEntity;
         }
     }

@@ -1,5 +1,7 @@
 package com.fmsirvent.experimentalarchitecturemarvel.view.favouritescharacters;
 
+import android.support.annotation.NonNull;
+
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.GetFavouriteCharactersUseCase;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.SubscribeToFavouriteCharactersUseCase;
@@ -30,12 +32,17 @@ public class FavouriteCharactersPresenter {
     }
 
     void getFavouriteCharacters() {
-        getFavouritesCharactersUseCase.execute(new GetFavouriteCharactersUseCase.Callback() {
+        getFavouritesCharactersUseCase.execute(getCallback());
+    }
+
+    @NonNull
+    private GetFavouriteCharactersUseCase.Callback getCallback() {
+        return new GetFavouriteCharactersUseCase.Callback() {
             @Override
             public void onData(List<MarvelCharacter> characters) {
                 view.renderFavouriteCharacters(CharactersViewMapper.map(characters));
             }
-        });
+        };
     }
 
     void subscribeToFavouriteCharacters() {

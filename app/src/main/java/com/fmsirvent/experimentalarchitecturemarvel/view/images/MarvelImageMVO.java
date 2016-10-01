@@ -11,9 +11,7 @@ public class MarvelImageMVO {
     public enum AspectRatio {
         PORTRAIT("portrait"),
         STANDARD("standard"), //square
-        LANDSCAPE("landscape"),
-        DETAIL("detail"),
-        FULL_SIZE("");
+        LANDSCAPE("landscape");
 
         private String ratio;
 

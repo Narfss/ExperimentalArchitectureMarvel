@@ -37,7 +37,7 @@ public class CharactersFragment extends BaseFragment implements RenderCharacters
     @Override
     @LayoutRes
     protected int getLayout() {
-        return R.layout.characters;
+        return R.layout.fragment_characters;
     }
 
     @Override

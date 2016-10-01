@@ -1,5 +1,7 @@
 package com.fmsirvent.experimentalarchitecturemarvel.view.comics;
 
+import android.support.annotation.NonNull;
+
 import com.fmsirvent.experimentalarchitecturemarvel.logic.comics.GetCharacterComicsUseCase;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.comics.MarvelComic;
 import com.fmsirvent.experimentalarchitecturemarvel.view.characters.MarvelCharacterMVO;
@@ -33,15 +35,20 @@ public class ComicsPresenter {
     void getComics() {
         if (idset) {
             getCharacterComicsUseCase.execute(id,
-                    comicsMVO.size(),
-                    new GetCharacterComicsUseCase.Callback(){
-                        @Override
-                        public void onData(List<MarvelComic> marvelComics) {
-                            List<MarvelComicMVO> marvelComicMVOs = ComicsViewMapper.map(marvelComics);
-                            comicsMVO.addAll(marvelComicMVOs);
-                            view.renderComics(comicsMVO);
-                        }
-                    });
+                                              comicsMVO.size(),
+                                              getCallback());
         }
+    }
+
+    @NonNull
+    private GetCharacterComicsUseCase.Callback getCallback() {
+        return new GetCharacterComicsUseCase.Callback(){
+            @Override
+            public void onData(List<MarvelComic> marvelComics) {
+                List<MarvelComicMVO> marvelComicMVOs = ComicsViewMapper.map(marvelComics);
+                comicsMVO.addAll(marvelComicMVOs);
+                view.renderComics(comicsMVO);
+            }
+        };
     }
 }

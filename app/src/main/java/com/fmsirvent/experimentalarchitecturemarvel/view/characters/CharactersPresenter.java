@@ -1,5 +1,7 @@
 package com.fmsirvent.experimentalarchitecturemarvel.view.characters;
 
+import android.support.annotation.NonNull;
+
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.GetCharactersUseCase;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.AddFavouriteCharacterUseCase;
@@ -25,14 +27,18 @@ public class CharactersPresenter {
     }
 
     void getCharacters() {
-        getCharactersUseCase.execute(charactersMVO.size(),
-                new GetCharactersUseCase.Callback() {
+        getCharactersUseCase.execute(charactersMVO.size(), getCallback());
+    }
+
+    @NonNull
+    private GetCharactersUseCase.Callback getCallback() {
+        return new GetCharactersUseCase.Callback() {
             @Override
             public void onData(List<MarvelCharacter> characters) {
                 charactersMVO.addAll(CharactersViewMapper.map(characters));
                 view.renderCharacters(charactersMVO);
             }
-        });
+        };
     }
 
     void addCharacter(MarvelCharacterMVO character) {

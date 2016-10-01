@@ -2,6 +2,8 @@ package com.fmsirvent.experimentalarchitecturemarvel.view.internal.di;
 
 import com.fmsirvent.experimentalarchitecturemarvel.view.characters.CharactersFragment;
 import com.fmsirvent.experimentalarchitecturemarvel.view.characters.RenderCharactersView;
+import com.fmsirvent.experimentalarchitecturemarvel.view.comic.ComicFragment;
+import com.fmsirvent.experimentalarchitecturemarvel.view.comic.RenderComicView;
 import com.fmsirvent.experimentalarchitecturemarvel.view.comics.ComicsFragment;
 import com.fmsirvent.experimentalarchitecturemarvel.view.comics.RenderComicsView;
 import com.fmsirvent.experimentalarchitecturemarvel.view.favouritescharacters.FavouriteCharactersFragment;
@@ -15,12 +17,14 @@ public class ActivityModule {
     private FavouriteCharactersFragment favouriteCharactersFragment;
     private CharactersFragment charactersFragment;
     private ComicsFragment comicsFragment;
+    private ComicFragment comicFragment;
 
     public ActivityModule() { }
 
     public ActivityModule(FavouriteCharactersFragment favouriteCharactersFragment) {
         this.favouriteCharactersFragment = favouriteCharactersFragment;
     }
+
     @Provides
     public RenderFavouriteCharactersView providesFavouriteCharactersView() {
         return favouriteCharactersFragment;
@@ -42,6 +46,15 @@ public class ActivityModule {
     @Provides
     public RenderComicsView providesComicsView() {
         return comicsFragment;
+    }
+
+    public ActivityModule(ComicFragment comicFragment) {
+        this.comicFragment = comicFragment;
+    }
+
+    @Provides
+    public RenderComicView providesComicView() {
+        return comicFragment;
     }
 
 }

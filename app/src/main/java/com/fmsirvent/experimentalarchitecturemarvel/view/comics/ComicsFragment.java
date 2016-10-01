@@ -12,6 +12,7 @@ import com.fmsirvent.experimentalarchitecturemarvel.R;
 import com.fmsirvent.experimentalarchitecturemarvel.utils.ClickableRVRendererAdapter;
 import com.fmsirvent.experimentalarchitecturemarvel.view.base.BaseFragment;
 import com.fmsirvent.experimentalarchitecturemarvel.view.characters.MarvelCharacterMVO;
+import com.fmsirvent.experimentalarchitecturemarvel.view.comic.ComicActivity;
 import com.fmsirvent.experimentalarchitecturemarvel.view.internal.di.ActivityModule;
 import com.fmsirvent.experimentalarchitecturemarvel.view.internal.di.DaggerActivityComponent;
 import com.pedrogomez.renderers.AdapteeCollection;
@@ -26,7 +27,7 @@ import butterknife.BindView;
 
 public class ComicsFragment extends BaseFragment implements RenderComicsView {
     @Inject ComicsPresenter presenter;
-    @BindView(R.id.favourite_characters) RecyclerView recyclerView;
+    @BindView(R.id.comics) RecyclerView recyclerView;
     private ClickableRVRendererAdapter<MarvelComicMVO> adapter;
     private LinearLayoutManager layoutManager;
     private boolean loading;
@@ -38,7 +39,7 @@ public class ComicsFragment extends BaseFragment implements RenderComicsView {
     @Override
     @LayoutRes
     protected int getLayout() {
-        return R.layout.comics;
+        return R.layout.fragment_comics;
     }
 
     @Override
@@ -76,13 +77,28 @@ public class ComicsFragment extends BaseFragment implements RenderComicsView {
         layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if(dy > 0) {
+                    int visibleItemCount = layoutManager.getChildCount();
+                    int totalItemCount = layoutManager.getItemCount();
+                    int pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
+                    if (!loading
+                            && (visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                        requestComics();
+                    }
+                }
+            }
+        });
         AdapteeCollection<MarvelComicMVO> adapterCollection = new ListAdapteeCollection<>();
         RendererBuilder<MarvelComicMVO> rendererBuilder = new ComicsRendererBuilder();
         adapter = new ClickableRVRendererAdapter<>(rendererBuilder, adapterCollection);
         adapter.setOnItemClick(new ClickableRVRendererAdapter.OnItemClick() {
             @Override
             public void onItemClick(int position) {
-
+                MarvelComicMVO comic = adapter.getItem(position);
+                startActivity(ComicActivity.newIntent(getContext(), comic));
             }
         });
         recyclerView.setAdapter(adapter);

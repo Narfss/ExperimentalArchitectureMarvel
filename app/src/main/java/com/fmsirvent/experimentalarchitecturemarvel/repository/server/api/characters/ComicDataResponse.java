@@ -134,7 +134,7 @@ public class ComicDataResponse {
     },
     */
 
-    /*"characters": {
+    /*"fragment_characters": {
         "available": 1,
                 "collectionURI": "http://gateway.marvel.com/v1/public/comics/57870/characters",
                 "items": [

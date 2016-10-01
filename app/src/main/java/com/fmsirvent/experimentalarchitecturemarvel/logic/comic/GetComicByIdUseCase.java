@@ -1,38 +1,36 @@
-package com.fmsirvent.experimentalarchitecturemarvel.logic.comics;
+package com.fmsirvent.experimentalarchitecturemarvel.logic.comic;
 
 import com.fmsirvent.experimentalarchitecturemarvel.logic.PostExecutionThread;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.ThreadExecutor;
-import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.comics.MarvelComic;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.exceptions.RepositoryException;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters.CharactersServerRepository;
+import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.comics.ComicsServerRepository;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.result.Data;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class GetCharacterComicsUseCase implements Runnable {
-    private final CharactersServerRepository charactersServerRepository;
+public class GetComicByIdUseCase implements Runnable {
+    private final ComicsServerRepository comicsServerRepository;
     private final ThreadExecutor threadExecutor;
     private final PostExecutionThread postExecutionThread;
     private long id;
-    private int offset;
     private Callback callback;
 
     @Inject
-    public GetCharacterComicsUseCase(CharactersServerRepository charactersServerRepository,
-                                     ThreadExecutor threadExecutor,
-                                     PostExecutionThread postExecutionThread) {
-        this.charactersServerRepository = charactersServerRepository;
+    public GetComicByIdUseCase(ComicsServerRepository comicsServerRepository,
+                               ThreadExecutor threadExecutor,
+                               PostExecutionThread postExecutionThread) {
+        this.comicsServerRepository = comicsServerRepository;
         this.threadExecutor = threadExecutor;
         this.postExecutionThread = postExecutionThread;
     }
 
     public void execute(long id,
-                        int offset,
                         Callback callback) {
         this.id = id;
-        this.offset = offset;
         this.callback = callback;
         threadExecutor.execute(this);
     }
@@ -40,23 +38,26 @@ public class GetCharacterComicsUseCase implements Runnable {
     @Override
     public void run() {
         try {
-            Data<MarvelComic> charactersComicsData = charactersServerRepository.getCharacterComics(id, offset);
-            notifySuccess(charactersComicsData.getResult());
+            Data<MarvelComic> charactersComicsData = comicsServerRepository.getComicById(id);
+            List<MarvelComic> result = charactersComicsData.getResult();
+            if (result.size() == 1) {
+                notifySuccess(result.get(0));
+            }
         } catch (RepositoryException e) {
             e.printStackTrace();
         }
     }
 
-    private void notifySuccess(final List<MarvelComic> comics) {
+    private void notifySuccess(final MarvelComic comic) {
         postExecutionThread.post(new Runnable() {
             @Override
             public void run() {
-                callback.onData(comics);
+                callback.onData(comic);
             }
         });
     }
 
     public interface Callback {
-        void onData(List<MarvelComic> marvelComics);
+        void onData(MarvelComic marvelComics);
     }
 }

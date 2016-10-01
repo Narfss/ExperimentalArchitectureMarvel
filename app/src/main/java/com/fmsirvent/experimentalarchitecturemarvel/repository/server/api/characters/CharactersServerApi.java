@@ -39,6 +39,8 @@ public class CharactersServerApi extends BaseRepository implements CharactersSer
                 BaseResponse<CharacterDataResponse> body = execute.body();
                 if (body.getStatus().compareToIgnoreCase(STATUS_OK) == 0) {
                     marvelCharactersData = DataMapper.mapCharacters(body.getData());
+                } else {
+                    throw new RepositoryException();
                 }
             }
         } catch (IOException e) {
@@ -62,6 +64,8 @@ public class CharactersServerApi extends BaseRepository implements CharactersSer
                 BaseResponse<ComicDataResponse> body = execute.body();
                 if (body.getStatus().compareToIgnoreCase(STATUS_OK) == 0) {
                     marvelComicsData = DataMapper.mapComics(body.getData());
+                } else {
+                    throw new RepositoryException();
                 }
             }
         } catch (IOException e) {

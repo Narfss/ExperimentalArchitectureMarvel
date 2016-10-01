@@ -5,22 +5,62 @@ import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.I
 import java.util.List;
 
 public class ComicDataResponse {
-    int id; //57870,
+    long id; //57870,
     int digitalId; //0,
     String title; //"Captain America: Steve Rogers (2016) #5",
     int issueNumber; //5,
-    String variantDescription; //"",
+    //String variantDescription; //"",
     String description; //"CIVIL WAR II TIE-IN! As heroes choose sides and tragedy strikes, Steve takes steps to end the war. Guest-starring the Invincible Iron Man!",
     String modified; //"2016-09-22T10:39:34-0400",
     String isbn; //"",
-    String upc; //"75960608457900511",
-    String diamondCode; //"JUN160784",
-    String ean; //"",
-    String issn; //"",
-    String format; //"Comic",
+    //String upc; //"75960608457900511",
+    //String diamondCode; //"JUN160784",
+    //String ean; //"",
+    //String issn; //"",
+    //String format; //"Comic",
     int pageCount; //32,
     ImageResponse thumbnail;
     List<ImageResponse> images;
+
+    public long getId() {
+        return id;
+    }
+
+    public int getDigitalId() {
+        return digitalId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getIssueNumber() {
+        return issueNumber;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getModified() {
+        return modified;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public ImageResponse getThumbnail() {
+        return thumbnail;
+    }
+
+    public List<ImageResponse> getImages() {
+        return images;
+    }
 
     /*"textObjects": [
         {

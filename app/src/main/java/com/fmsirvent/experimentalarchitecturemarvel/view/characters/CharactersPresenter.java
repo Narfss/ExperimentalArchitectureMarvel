@@ -29,13 +29,13 @@ public class CharactersPresenter {
                 new GetCharactersUseCase.Callback() {
             @Override
             public void onData(List<MarvelCharacter> characters) {
-                charactersMVO.addAll(CharactersMapper.map(characters));
+                charactersMVO.addAll(CharactersViewMapper.map(characters));
                 view.renderCharacters(charactersMVO);
             }
         });
     }
 
     void addCharacter(MarvelCharacterMVO character) {
-        addFavouriteCharacterUseCase.execute(CharactersMapper.map(character));
+        addFavouriteCharacterUseCase.execute(CharactersViewMapper.map(character));
     }
 }

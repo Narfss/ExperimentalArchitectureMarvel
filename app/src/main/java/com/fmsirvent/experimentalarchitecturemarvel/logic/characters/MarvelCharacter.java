@@ -3,13 +3,13 @@ package com.fmsirvent.experimentalarchitecturemarvel.logic.characters;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.images.MarvelImage;
 
 public class MarvelCharacter {
-    private int id;
+    private long id;
     private String name;
     private String description;
     private String modified;
     private MarvelImage thumbnail;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -30,13 +30,13 @@ public class MarvelCharacter {
     }
 
     public static class Builder {
-        private int id;
+        private long id;
         private String name;
         private String description;
         private String modified;
         private MarvelImage thumbnail;
 
-        public Builder setId(int id) {
+        public Builder setId(long id) {
             this.id = id;
             return this;
         }

@@ -20,10 +20,10 @@ public interface CharactersService {
     Call<BaseResponse<CharacterDataResponse>> getCharacters(@QueryMap Map<String, String> options);
 
     @GET(CHARACTERS + ID)
-    Call<BaseResponse<CharacterDataResponse>> getCharacter(@Path("id") String id,
-                                                                         @QueryMap Map<String, String> options);
+    Call<BaseResponse<CharacterDataResponse>> getCharacter(@Path("id") long id,
+                                                           @QueryMap Map<String, String> options);
 
     @GET(CHARACTERS + ID + COMICS)
-    Call<BaseResponse<ComicDataResponse>> getCharacterComics(@Path("id") String id,
-                                                                           @QueryMap Map<String, String> options);
+    Call<BaseResponse<ComicDataResponse>> getCharacterComics(@Path("id") long id,
+                                                             @QueryMap Map<String, String> options);
 }

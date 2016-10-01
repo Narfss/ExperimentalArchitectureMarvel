@@ -1,9 +1,8 @@
-package com.fmsirvent.experimentalarchitecturemarvel.view.favouritescharacters;
+package com.fmsirvent.experimentalarchitecturemarvel.view.comics;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,8 +10,6 @@ import android.view.View;
 import com.fmsirvent.experimentalarchitecturemarvel.Application;
 import com.fmsirvent.experimentalarchitecturemarvel.R;
 import com.fmsirvent.experimentalarchitecturemarvel.utils.ClickableRVRendererAdapter;
-import com.fmsirvent.experimentalarchitecturemarvel.view.FavouriteCharacterSelected;
-import com.fmsirvent.experimentalarchitecturemarvel.view.MainActivity;
 import com.fmsirvent.experimentalarchitecturemarvel.view.base.BaseFragment;
 import com.fmsirvent.experimentalarchitecturemarvel.view.characters.MarvelCharacterMVO;
 import com.fmsirvent.experimentalarchitecturemarvel.view.internal.di.ActivityModule;
@@ -27,28 +24,28 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class FavouriteCharactersFragment extends BaseFragment implements RenderFavouriteCharactersView {
-    @Inject FavouriteCharactersPresenter presenter;
+public class ComicsFragment extends BaseFragment implements RenderComicsView {
+    @Inject ComicsPresenter presenter;
     @BindView(R.id.favourite_characters) RecyclerView recyclerView;
-    private ClickableRVRendererAdapter<MarvelCharacterMVO> adapter;
+    private ClickableRVRendererAdapter<MarvelComicMVO> adapter;
     private LinearLayoutManager layoutManager;
     private boolean loading;
 
-    public static FavouriteCharactersFragment newInstance() {
-        return new FavouriteCharactersFragment();
+    public static ComicsFragment newInstance() {
+        return new ComicsFragment();
     }
 
     @Override
     @LayoutRes
     protected int getLayout() {
-        return R.layout.favourite_characters;
+        return R.layout.comics;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         configureRecycleView();
-        requestFavouriteCharacters();
+        requestComics();
     }
 
     @Override
@@ -61,53 +58,40 @@ public class FavouriteCharactersFragment extends BaseFragment implements RenderF
                 .inject(this);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        presenter.subscribeToFavouriteCharacters();
-    }
-
-    @Override
-    public void onStop() {
-        presenter.unsubscribeToFavouriteCharacters();
-        super.onStop();
-    }
-
-    private void requestFavouriteCharacters() {
+    private void requestComics() {
         loading = true;
-        presenter.getFavouriteCharacters();
+        presenter.getComics();
     }
 
     @Override
-    public void renderFavouriteCharacters(List<MarvelCharacterMVO> characters) {
+    public void renderComics(List<MarvelComicMVO> marvelComics) {
         if (adapter != null) {
-            adapter.replace(characters);
+            adapter.replace(marvelComics);
             adapter.notifyDataSetChanged();
             loading = false;
         }
     }
 
-    @Override
-    public void renderNewFavouriteCharacter(MarvelCharacterMVO marvelCharacterMVO) {
-        requestFavouriteCharacters();
-    }
-
     private void configureRecycleView() {
         layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        AdapteeCollection<MarvelCharacterMVO> adapterCollection = new ListAdapteeCollection<>();
-        RendererBuilder<MarvelCharacterMVO> rendererBuilder = new FavouriteCharacterRendererBuilder();
+        AdapteeCollection<MarvelComicMVO> adapterCollection = new ListAdapteeCollection<>();
+        RendererBuilder<MarvelComicMVO> rendererBuilder = new ComicsRendererBuilder();
         adapter = new ClickableRVRendererAdapter<>(rendererBuilder, adapterCollection);
         adapter.setOnItemClick(new ClickableRVRendererAdapter.OnItemClick() {
             @Override
             public void onItemClick(int position) {
-                FragmentActivity activity = getActivity();
-                if (activity instanceof FavouriteCharacterSelected) {
-                    ((FavouriteCharacterSelected) activity).onSelected(adapter.getItem(position));
-                }
+
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    public void setCharacterSelected(MarvelCharacterMVO character) {
+        presenter.setCharacter(character);
+        if (isAdded() && !isRemoving()) {
+            requestComics();
+        }
     }
 }

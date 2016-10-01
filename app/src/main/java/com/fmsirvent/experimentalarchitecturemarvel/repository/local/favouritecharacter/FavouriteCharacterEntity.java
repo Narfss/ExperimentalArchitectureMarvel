@@ -16,7 +16,7 @@ public class FavouriteCharacterEntity {
     public static final String TIMESTAMP = "timestamp";
 
     @DatabaseField(columnName = ID, id = true)
-    int id;
+    long id;
     @DatabaseField(columnName = NAME)
     String name;
     @DatabaseField(columnName = DESCRIPTION)
@@ -30,7 +30,7 @@ public class FavouriteCharacterEntity {
     @DatabaseField(columnName = TIMESTAMP)
     long timestamp;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -55,7 +55,7 @@ public class FavouriteCharacterEntity {
     }
 
     public static class Builder {
-        int id;
+        long id;
         String name;
         String description;
         String modified;
@@ -63,7 +63,7 @@ public class FavouriteCharacterEntity {
         String thumbnailExtension;
         private long timestamp;
 
-        public Builder setId(int id) {
+        public Builder setId(long id) {
             this.id = id;
             return this;
         }

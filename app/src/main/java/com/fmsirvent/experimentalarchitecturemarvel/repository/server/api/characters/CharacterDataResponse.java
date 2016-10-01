@@ -3,13 +3,13 @@ package com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.chara
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.ImageResponse;
 
 public class CharacterDataResponse {
-    int id; //1011334,
+    long id; //1011334,
     String name; // "3-D Man",
     String description; // "",
     String modified; //"2014-04-29T14:18:17-0400",
     ImageResponse thumbnail;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

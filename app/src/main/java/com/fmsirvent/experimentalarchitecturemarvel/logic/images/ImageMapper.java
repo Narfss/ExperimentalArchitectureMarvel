@@ -2,6 +2,9 @@ package com.fmsirvent.experimentalarchitecturemarvel.logic.images;
 
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.ImageResponse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ImageMapper {
     public static MarvelImage map(ImageResponse image) {
         return new MarvelImage.Builder()
@@ -15,5 +18,13 @@ public class ImageMapper {
                 .setPath(thumbnailPath)
                 .setExtension(thumbnailExtension)
                 .build();
+    }
+
+    public static List<MarvelImage> map(List<ImageResponse> images) {
+        ArrayList<MarvelImage> marvelImages = new ArrayList<>();
+        for (ImageResponse image : images) {
+            marvelImages.add(map(image));
+        }
+        return marvelImages;
     }
 }

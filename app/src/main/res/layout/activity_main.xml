@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fmsirvent.experimentalarchitecturemarvel.view.MainActivity">
+    tools:context="com.fmsirvent.experimentalarchitecturemarvel.view.MainActivity"
+    android:background="@android:color/darker_gray">
 
     <FrameLayout
-        android:id="@+id/comics"
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/favourite_characters"
-        android:background="@android:color/darker_gray">
-    </FrameLayout>
+        android:layout_above="@+id/favourite_characters" />
 
-    <FrameLayout
-        android:id="@+id/characters"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/favourite_characters"
-        android:background="@android:color/darker_gray">
-    </FrameLayout>
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/add_character"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_character_add"/>
 
     <FrameLayout
         android:id="@id/favourite_characters"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/black">
-    </FrameLayout>
+        android:layout_toRightOf="@+id/add_character" />
 </RelativeLayout>

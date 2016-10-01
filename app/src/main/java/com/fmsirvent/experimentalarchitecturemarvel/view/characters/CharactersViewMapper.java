@@ -2,12 +2,12 @@ package com.fmsirvent.experimentalarchitecturemarvel.view.characters;
 
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.images.MarvelImage;
-import com.fmsirvent.experimentalarchitecturemarvel.view.images.ImageMapper;
+import com.fmsirvent.experimentalarchitecturemarvel.view.images.ImageViewMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharactersMapper {
+public class CharactersViewMapper {
     public static List<MarvelCharacterMVO> map(List<MarvelCharacter> characters) {
         List<MarvelCharacterMVO> charactersMVO = new ArrayList<>();
         for (MarvelCharacter character : characters) {
@@ -22,13 +22,13 @@ public class CharactersMapper {
                         .setName(character.getName())
                         .setDescription(character.getDescription())
                         .setModified(character.getModified())
-                        .setThumbnail(ImageMapper.map(character.getThumbnail()))
+                        .setThumbnail(ImageViewMapper.map(character.getThumbnail()))
                         .build();
     }
 
     public static MarvelCharacter map(MarvelCharacterMVO character) {
         MarvelCharacter.Builder builder = new MarvelCharacter.Builder();
-        MarvelImage thumbnail = ImageMapper.map(character.getThumbnail());
+        MarvelImage thumbnail = ImageViewMapper.map(character.getThumbnail());
         return builder.setId(character.getId())
                 .setName(character.getName())
                 .setDescription(character.getDescription())

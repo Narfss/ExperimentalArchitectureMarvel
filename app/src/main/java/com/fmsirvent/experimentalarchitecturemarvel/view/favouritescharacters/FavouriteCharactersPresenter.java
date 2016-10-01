@@ -4,7 +4,7 @@ import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelChara
 import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.GetFavouriteCharactersUseCase;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.SubscribeToFavouriteCharactersUseCase;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.UnsubscribeToFavouriteCharactersUseCase;
-import com.fmsirvent.experimentalarchitecturemarvel.view.characters.CharactersMapper;
+import com.fmsirvent.experimentalarchitecturemarvel.view.characters.CharactersViewMapper;
 import com.fmsirvent.experimentalarchitecturemarvel.view.characters.MarvelCharacterMVO;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class FavouriteCharactersPresenter {
         getFavouritesCharactersUseCase.execute(new GetFavouriteCharactersUseCase.Callback() {
             @Override
             public void onData(List<MarvelCharacter> characters) {
-                view.renderFavouriteCharacters(CharactersMapper.map(characters));
+                view.renderFavouriteCharacters(CharactersViewMapper.map(characters));
             }
         });
     }

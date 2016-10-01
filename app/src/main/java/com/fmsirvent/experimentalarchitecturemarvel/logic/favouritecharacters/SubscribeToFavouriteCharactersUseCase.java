@@ -2,7 +2,7 @@ package com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters;
 
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.local.favouritecharacter.FavouriteCharactersLocalRepository;
-import com.fmsirvent.experimentalarchitecturemarvel.view.characters.CharactersMapper;
+import com.fmsirvent.experimentalarchitecturemarvel.view.characters.CharactersViewMapper;
 import com.fmsirvent.experimentalarchitecturemarvel.view.characters.MarvelCharacterMVO;
 
 import javax.inject.Inject;
@@ -22,7 +22,7 @@ public class SubscribeToFavouriteCharactersUseCase {
 
                 @Override
                 public void onNext(MarvelCharacter marvelCharacter) {
-                    callback.onFavouriteAdded(CharactersMapper.map(marvelCharacter));
+                    callback.onFavouriteAdded(CharactersViewMapper.map(marvelCharacter));
                 }
             };
 

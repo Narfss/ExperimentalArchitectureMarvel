@@ -21,7 +21,7 @@ public class FavouriteCharactersORMController extends ORMController {
         return favouriteCharacterEntities;
     }
 
-    public FavouriteCharacterEntity getFavouriteCharacter(int id) throws SQLException {
+    public FavouriteCharacterEntity getFavouriteCharacter(long id) throws SQLException {
         FavouriteCharacterEntity favouriteCharacterEntities = null;
         ORMHelper ormHelper = getHelper();
         if (ormHelper != null) {

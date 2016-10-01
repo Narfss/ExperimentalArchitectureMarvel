@@ -1,6 +1,7 @@
 package com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters;
 
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.comics.MarvelComic;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.exceptions.RepositoryException;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.EndPointFactory;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.BaseRepository;
@@ -37,7 +38,7 @@ public class CharactersServerApi extends BaseRepository implements CharactersSer
             if (execute.isSuccessful()) {
                 BaseResponse<CharacterDataResponse> body = execute.body();
                 if (body.getStatus().compareToIgnoreCase(STATUS_OK) == 0) {
-                    marvelCharactersData = DataMapper.map(body.getData());
+                    marvelCharactersData = DataMapper.mapCharacters(body.getData());
                 }
             }
         } catch (IOException e) {
@@ -45,5 +46,28 @@ public class CharactersServerApi extends BaseRepository implements CharactersSer
             throw new RepositoryException();
         }
         return marvelCharactersData;
+    }
+
+    @Override
+    public Data<MarvelComic> getCharacterComics(long id, int offset) throws RepositoryException {
+        Data<MarvelComic> marvelComicsData = null;
+        CharactersService service =
+                (CharactersService) endPointFactory.getService(CharactersService.class);
+        Call<BaseResponse<ComicDataResponse>> characters =
+                service.getCharacterComics(id, OffsetRequest.getMap(offset));
+        Response<BaseResponse<ComicDataResponse>> execute;
+        try {
+            execute = characters.execute();
+            if (execute.isSuccessful()) {
+                BaseResponse<ComicDataResponse> body = execute.body();
+                if (body.getStatus().compareToIgnoreCase(STATUS_OK) == 0) {
+                    marvelComicsData = DataMapper.mapComics(body.getData());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RepositoryException();
+        }
+        return marvelComicsData;
     }
 }

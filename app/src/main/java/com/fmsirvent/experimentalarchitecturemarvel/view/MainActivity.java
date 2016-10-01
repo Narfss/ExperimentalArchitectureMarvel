@@ -2,6 +2,7 @@ package com.fmsirvent.experimentalarchitecturemarvel.view;
 
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.view.View;
 
 import com.fmsirvent.experimentalarchitecturemarvel.R;
 import com.fmsirvent.experimentalarchitecturemarvel.view.base.BaseActivity;
@@ -10,10 +11,12 @@ import com.fmsirvent.experimentalarchitecturemarvel.view.characters.MarvelCharac
 import com.fmsirvent.experimentalarchitecturemarvel.view.comics.ComicsFragment;
 import com.fmsirvent.experimentalarchitecturemarvel.view.favouritescharacters.FavouriteCharactersFragment;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements FavouriteCharacterSelected {
+    @BindView(R.id.characters_parent) View charactersParent;
     private FavouriteCharactersFragment favouriteCharactersFragment;
     private CharactersFragment charactersFragment;
     private ComicsFragment comicsFragment;
@@ -24,6 +27,7 @@ public class MainActivity extends BaseActivity implements FavouriteCharacterSele
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupFavouriteFragment();
+        setupCharactersFragment();
         setupComicsFragment();
         ButterKnife.bind(this);
     }
@@ -35,11 +39,7 @@ public class MainActivity extends BaseActivity implements FavouriteCharacterSele
     }
 
     private void evaluateView() {
-        if (showCharacters) {
-            setupCharactersFragment();
-        } else {
-            setupComicsFragment();
-        }
+        charactersParent.setVisibility(showCharacters ? View.VISIBLE : View.GONE);
     }
 
     private void setupCharactersFragment() {
@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity implements FavouriteCharacterSele
             charactersFragment = CharactersFragment.newInstance();
         }
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content, charactersFragment);
+        ft.replace(R.id.characters, charactersFragment);
         ft.commit();
     }
 
@@ -69,9 +69,8 @@ public class MainActivity extends BaseActivity implements FavouriteCharacterSele
 
     @Override
     public void onSelected(MarvelCharacterMVO character) {
-        if (showCharacters) {
-            setupComicsFragment();
-        }
+        showCharacters = false;
+        evaluateView();
         comicsFragment.setCharacterSelected(character);
     }
 }

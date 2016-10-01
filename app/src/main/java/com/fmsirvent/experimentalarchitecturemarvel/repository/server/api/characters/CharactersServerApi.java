@@ -1,12 +1,10 @@
-package com.fmsirvent.experimentalarchitecturemarvel.repository.server;
+package com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters;
 
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.exceptions.RepositoryException;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.EndPointFactory;
-import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.BaseRequest;
+import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.BaseRepository;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.BaseResponse;
-import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters.CharacterDataResponse;
-import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters.CharactersService;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.result.Data;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.result.DataMapper;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.result.OffsetRequest;
@@ -18,14 +16,15 @@ import javax.inject.Inject;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class CharactersServerRepository extends BaseRepository {
+public class CharactersServerApi extends BaseRepository implements CharactersServerRepository {
     private EndPointFactory endPointFactory;
 
     @Inject
-    CharactersServerRepository(EndPointFactory endPointFactory) {
+    public CharactersServerApi(EndPointFactory endPointFactory) {
         this.endPointFactory = endPointFactory;
     }
 
+    @Override
     public Data<MarvelCharacter> getCharacters(int offset) throws RepositoryException {
         Data<MarvelCharacter> marvelCharactersData = null;
         CharactersService service =

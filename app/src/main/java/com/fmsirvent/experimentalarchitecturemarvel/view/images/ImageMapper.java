@@ -9,4 +9,11 @@ public class ImageMapper {
                                  .setExtension(image.getExtension())
                                  .build();
     }
+
+    public static MarvelImage map(MarvelImageMVO image) {
+        return new MarvelImage.Builder()
+                              .setPath(image.getPath())
+                              .setExtension(image.getExtension())
+                              .build();
+    }
 }

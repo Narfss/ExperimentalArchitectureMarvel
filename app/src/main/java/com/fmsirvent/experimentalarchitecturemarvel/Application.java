@@ -1,5 +1,7 @@
 package com.fmsirvent.experimentalarchitecturemarvel;
 
+import android.content.Context;
+
 import com.fmsirvent.experimentalarchitecturemarvel.internal.di.ApplicationComponent;
 import com.fmsirvent.experimentalarchitecturemarvel.internal.di.DaggerRuntimeApplicationComponent;
 import com.fmsirvent.experimentalarchitecturemarvel.internal.di.RuntimeApplicationComponent;
@@ -15,6 +17,10 @@ public class Application extends android.app.Application {
 
     public static Application getInstance() {
         return instance;
+    }
+
+    public static Context getContext() {
+        return getInstance().getApplicationContext();
     }
 
     @Override

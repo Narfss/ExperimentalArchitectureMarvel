@@ -47,6 +47,14 @@ public class MarvelImageMVO {
         }
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
     public String getURL(AspectRatio ratio, AspectSize size) {
         return String.format("%s/%s_%s.%s", path, ratio, size, extension);
     }

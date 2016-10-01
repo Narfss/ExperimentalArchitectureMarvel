@@ -1,6 +1,6 @@
 package com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.result;
 
-import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.CharactersMapper;
+import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters.CharactersMapper;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.DataResponse;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters.CharacterDataResponse;

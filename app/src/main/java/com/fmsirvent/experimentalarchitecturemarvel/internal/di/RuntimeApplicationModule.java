@@ -13,11 +13,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module(includes = {
-//        UseCasesModule.class,
-//        RepositoriesModule.class,
-//        LogicModule.class,
-//        NavigationModule.class,
-//        ApiModule.class
+        RepositoriesModule.class,
 })
 public class RuntimeApplicationModule implements ApplicationModule {
     private Context context;

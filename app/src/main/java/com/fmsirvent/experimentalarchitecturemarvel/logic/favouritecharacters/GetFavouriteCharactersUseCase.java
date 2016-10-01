@@ -1,8 +1,10 @@
-package com.fmsirvent.experimentalarchitecturemarvel.logic.characters;
+package com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters;
 
 import com.fmsirvent.experimentalarchitecturemarvel.logic.PostExecutionThread;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.ThreadExecutor;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.exceptions.RepositoryException;
+import com.fmsirvent.experimentalarchitecturemarvel.repository.local.favouritecharacter.FavouriteCharactersLocalRepository;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters.CharactersServerRepository;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.result.Data;
 
@@ -10,24 +12,22 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class GetCharactersUseCase implements Runnable {
-    private final CharactersServerRepository charactersServerRepository;
+public class GetFavouriteCharactersUseCase implements Runnable {
+    private final FavouriteCharactersLocalRepository favouriteCharactersLocalRepository;
     private final ThreadExecutor threadExecutor;
     private final PostExecutionThread postExecutionThread;
-    private int offset;
     private Callback callback;
 
     @Inject
-    public GetCharactersUseCase(CharactersServerRepository charactersServerRepository,
-                                ThreadExecutor threadExecutor,
-                                PostExecutionThread postExecutionThread) {
-        this.charactersServerRepository = charactersServerRepository;
+    public GetFavouriteCharactersUseCase(FavouriteCharactersLocalRepository favouriteCharactersLocalRepository,
+                                         ThreadExecutor threadExecutor,
+                                         PostExecutionThread postExecutionThread) {
+        this.favouriteCharactersLocalRepository = favouriteCharactersLocalRepository;
         this.threadExecutor = threadExecutor;
         this.postExecutionThread = postExecutionThread;
     }
 
-    public void execute(int offset, Callback callback) {
-        this.offset = offset;
+    public void execute(Callback callback) {
         this.callback = callback;
         threadExecutor.execute(this);
     }
@@ -35,8 +35,9 @@ public class GetCharactersUseCase implements Runnable {
     @Override
     public void run() {
         try {
-            Data<MarvelCharacter> charactersData = charactersServerRepository.getCharacters(offset);
-            notifySuccess(charactersData.getResult());
+            List<MarvelCharacter> characters =
+                    favouriteCharactersLocalRepository.getFavouriteCharacters();
+            notifySuccess(characters);
         } catch (RepositoryException e) {
             e.printStackTrace();
         }

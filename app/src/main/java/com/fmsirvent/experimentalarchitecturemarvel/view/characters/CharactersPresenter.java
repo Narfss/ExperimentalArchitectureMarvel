@@ -2,6 +2,7 @@ package com.fmsirvent.experimentalarchitecturemarvel.view.characters;
 
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.GetCharactersUseCase;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.AddFavouriteCharacterUseCase;
 import com.fmsirvent.experimentalarchitecturemarvel.view.favouritescharacters.RenderFavouriteCharactersView;
 
 import java.util.ArrayList;
@@ -13,13 +14,15 @@ import javax.inject.Inject;
 public class CharactersPresenter {
     private RenderCharactersView view;
     private GetCharactersUseCase getCharactersUseCase;
+    private AddFavouriteCharacterUseCase addFavouriteCharacterUseCase;
     List<MarvelCharacterMVO> charactersMVO;
 
     @Inject
     CharactersPresenter(RenderCharactersView view,
-                        GetCharactersUseCase getCharactersUseCase) {
+                        GetCharactersUseCase getCharactersUseCase, AddFavouriteCharacterUseCase addFavouriteCharacterUseCase) {
         this.view = view;
         this.getCharactersUseCase = getCharactersUseCase;
+        this.addFavouriteCharacterUseCase = addFavouriteCharacterUseCase;
         charactersMVO = new ArrayList<>();
     }
 
@@ -32,5 +35,9 @@ public class CharactersPresenter {
                 view.renderCharacters(charactersMVO);
             }
         });
+    }
+
+    void addCharacter(MarvelCharacterMVO character) {
+        addFavouriteCharacterUseCase.execute(CharactersMapper.map(character));
     }
 }

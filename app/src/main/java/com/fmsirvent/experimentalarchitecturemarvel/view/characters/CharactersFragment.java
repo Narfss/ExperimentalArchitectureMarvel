@@ -9,12 +9,12 @@ import android.view.View;
 
 import com.fmsirvent.experimentalarchitecturemarvel.Application;
 import com.fmsirvent.experimentalarchitecturemarvel.R;
+import com.fmsirvent.experimentalarchitecturemarvel.utils.ClickableRVRendererAdapter;
 import com.fmsirvent.experimentalarchitecturemarvel.view.base.BaseFragment;
 import com.fmsirvent.experimentalarchitecturemarvel.view.internal.di.ActivityModule;
 import com.fmsirvent.experimentalarchitecturemarvel.view.internal.di.DaggerActivityComponent;
 import com.pedrogomez.renderers.AdapteeCollection;
 import com.pedrogomez.renderers.ListAdapteeCollection;
-import com.pedrogomez.renderers.RVRendererAdapter;
 import com.pedrogomez.renderers.RendererBuilder;
 
 import java.util.List;
@@ -26,7 +26,7 @@ import butterknife.BindView;
 public class CharactersFragment extends BaseFragment implements RenderCharactersView {
     @Inject CharactersPresenter presenter;
     @BindView(R.id.characters) RecyclerView recyclerView;
-    private RVRendererAdapter<MarvelCharacterMVO> adapter;
+    private ClickableRVRendererAdapter<MarvelCharacterMVO> adapter;
     private LinearLayoutManager layoutManager;
     private boolean loading;
 
@@ -90,9 +90,14 @@ public class CharactersFragment extends BaseFragment implements RenderCharacters
             }
         });
         AdapteeCollection<MarvelCharacterMVO> adapteeCollection = new ListAdapteeCollection<>();
-        RendererBuilder<MarvelCharacterMVO> rendererBuilder = new RendererBuilder<MarvelCharacterMVO>()
-                .bind(MarvelCharacterMVO.class, new CharacterRenderer());
-        adapter = new RVRendererAdapter<>(rendererBuilder, adapteeCollection);
+        RendererBuilder<MarvelCharacterMVO> rendererBuilder = new CharacterRendererBuilder();
+        adapter = new ClickableRVRendererAdapter<>(rendererBuilder, adapteeCollection);
+        adapter.setOnItemClick(new ClickableRVRendererAdapter.OnItemClick() {
+            @Override
+            public void onItemClick(int position) {
+                presenter.addCharacter(adapter.getItem(position));
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 }

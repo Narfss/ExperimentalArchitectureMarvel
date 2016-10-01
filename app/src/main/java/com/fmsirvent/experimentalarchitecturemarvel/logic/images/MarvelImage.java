@@ -12,16 +12,16 @@ public class MarvelImage {
         return path;
     }
 
-    static class Builder {
+    public static class Builder {
         private String path;
         private String extension;
 
-        Builder setPath(String path) {
+        public Builder setPath(String path) {
             this.path = path;
             return this;
         }
 
-        Builder setExtension(String extension) {
+        public Builder setExtension(String extension) {
             this.extension = extension;
             return this;
         }

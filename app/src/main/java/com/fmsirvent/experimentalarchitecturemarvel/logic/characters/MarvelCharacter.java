@@ -29,34 +29,34 @@ public class MarvelCharacter {
         return thumbnail;
     }
 
-    static class Builder {
+    public static class Builder {
         private int id;
         private String name;
         private String description;
         private String modified;
         private MarvelImage thumbnail;
 
-        Builder setId(int id) {
+        public Builder setId(int id) {
             this.id = id;
             return this;
         }
 
-        Builder setName(String name) {
+        public Builder setName(String name) {
             this.name = name;
             return this;
         }
 
-        Builder setDescription(String description) {
+        public Builder setDescription(String description) {
             this.description = description;
             return this;
         }
 
-        Builder setModified(String modified) {
+        public Builder setModified(String modified) {
             this.modified = modified;
             return this;
         }
 
-        Builder setThumbnail(MarvelImage thumbnail) {
+        public Builder setThumbnail(MarvelImage thumbnail) {
             this.thumbnail = thumbnail;
             return this;
         }

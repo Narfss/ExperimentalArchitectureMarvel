@@ -3,10 +3,10 @@ package com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base;
 import java.util.List;
 
 public class DataResponse<T> {
-    int offset; // 0,
-    int limit; // 20,
-    int total; // 1494,
-    int count; // 20,
+    int offset;
+    int limit;
+    int total;
+    int count;
     List<T> results;
 
     public int getOffset() {

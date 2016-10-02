@@ -1,6 +1,4 @@
-# Experimental Architecture Marvel #
-
-![](https://bytebucket.org/narfss/arduino-bluetooth-y-android/raw/83274506ceaea69a216e1b9e071e18e2552d3eb7/arduiblueandr.png?token=4f67415d32a567a569ec479758abecdae5a16b9d)
+![](https://github.com/Narfss/ExperimentalArchitectureMarvel/raw/master/AEM_header.png)
 
 This repository is an example of architecture and use of some techniques related with android development.
 
@@ -22,6 +20,8 @@ Last view is the comic details showing title, description and images.
 Any feedback is welcome.
 
 Thanks.
+
+# Experimental Architecture Marvel #
 
 ## License
 

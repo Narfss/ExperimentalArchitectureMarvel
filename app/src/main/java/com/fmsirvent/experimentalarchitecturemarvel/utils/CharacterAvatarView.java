@@ -12,18 +12,18 @@ import android.util.AttributeSet;
 import com.fmsirvent.experimentalarchitecturemarvel.R;
 import com.fmsirvent.experimentalarchitecturemarvel.view.images.MarvelImageMVO;
 
-public class CharacterAvatar extends AppCompatImageView {
-    public CharacterAvatar(Context context) {
+public class CharacterAvatarView extends AppCompatImageView {
+    public CharacterAvatarView(Context context) {
         super(context);
         init(context, null, 0);
     }
 
-    public CharacterAvatar(Context context, AttributeSet attrs) {
+    public CharacterAvatarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, 0);
     }
 
-    public CharacterAvatar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CharacterAvatarView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
     }

@@ -12,11 +12,18 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 public class ImageLoader {
     public static void loadImage(ImageView imageView, String imageURL) {
         Glide.with(imageView.getContext())
+                .load(imageURL)
+                .into(imageView);
+    }
+
+    public static void loadImageFade(ImageView imageView, String imageURL) {
+        Glide.with(imageView.getContext())
              .load(imageURL)
+             .crossFade()
              .into(imageView);
     }
 
-    public static void loadCircularImage(final CharacterAvatar imageView, String imageURL) {
+    public static void loadCircularImage(final CharacterAvatarView imageView, String imageURL) {
         Glide.with(imageView.getContext())
              .load(imageURL)
              .asBitmap()

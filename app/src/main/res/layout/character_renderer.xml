@@ -6,7 +6,7 @@
     android:padding="8dp"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.fmsirvent.experimentalarchitecturemarvel.utils.CharacterAvatar
+    <com.fmsirvent.experimentalarchitecturemarvel.utils.CharacterAvatarView
         android:id="@+id/character_thumbnail"
         android:layout_width="92dp"
         android:layout_height="92dp"

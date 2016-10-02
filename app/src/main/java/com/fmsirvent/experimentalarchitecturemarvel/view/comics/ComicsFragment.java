@@ -66,7 +66,9 @@ public class ComicsFragment extends BaseFragment implements RenderComicsView {
 
     @Override
     public void renderComics(List<MarvelComicMVO> marvelComics) {
-        if (adapter != null) {
+        if (adapter != null
+            && isAdded()
+            && !isRemoving()) {
             adapter.replace(marvelComics);
             adapter.notifyDataSetChanged();
             loading = false;

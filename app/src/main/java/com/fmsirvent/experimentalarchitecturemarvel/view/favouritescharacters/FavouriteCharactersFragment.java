@@ -80,7 +80,9 @@ public class FavouriteCharactersFragment extends BaseFragment implements RenderF
 
     @Override
     public void renderFavouriteCharacters(List<MarvelCharacterMVO> characters) {
-        if (adapter != null) {
+        if (adapter != null
+            && isAdded()
+            && !isRemoving()) {
             adapter.replace(characters);
             adapter.notifyDataSetChanged();
             loading = false;

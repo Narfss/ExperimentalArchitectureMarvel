@@ -70,7 +70,9 @@ public class ComicFragment extends BaseFragment implements RenderComicView {
 
     @Override
     public void renderComic(MarvelComicMVO comic) {
-        ImageLoader.loadImage(thumbnail, comic.getThumbnail().getURL(MarvelImageMVO.Original.DETAIL));
-        Toast.makeText(getContext(), comic.getTitle(), Toast.LENGTH_SHORT).show();
+        if (isAdded() && !isRemoving()) {
+            ImageLoader.loadImage(thumbnail, comic.getThumbnail().getURL(MarvelImageMVO.Original.DETAIL));
+            Toast.makeText(getContext(), comic.getTitle(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

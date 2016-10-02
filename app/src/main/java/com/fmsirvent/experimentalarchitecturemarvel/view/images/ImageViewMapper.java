@@ -1,6 +1,6 @@
 package com.fmsirvent.experimentalarchitecturemarvel.view.images;
 
-import com.fmsirvent.experimentalarchitecturemarvel.logic.images.MarvelImage;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelImage;
 
 import java.util.ArrayList;
 import java.util.List;

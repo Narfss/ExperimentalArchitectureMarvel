@@ -14,6 +14,7 @@ import dagger.Provides;
 
 @Module(includes = {
         RepositoriesModule.class,
+        UseCaseModule.class
 })
 public class RuntimeApplicationModule implements ApplicationModule {
     private Context context;

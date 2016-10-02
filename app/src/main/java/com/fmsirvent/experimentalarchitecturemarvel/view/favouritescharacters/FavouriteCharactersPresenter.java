@@ -2,7 +2,7 @@ package com.fmsirvent.experimentalarchitecturemarvel.view.favouritescharacters;
 
 import android.support.annotation.NonNull;
 
-import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.GetFavouriteCharactersUseCase;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.SubscribeToFavouriteCharactersUseCase;
 import com.fmsirvent.experimentalarchitecturemarvel.logic.favouritecharacters.UnsubscribeToFavouriteCharactersUseCase;

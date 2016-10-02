@@ -1,8 +1,8 @@
 package com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.result;
 
-import com.fmsirvent.experimentalarchitecturemarvel.logic.comics.MarvelComic;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelComic;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters.CharactersMapper;
-import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.DataResponse;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters.CharacterDataResponse;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters.ComicDataResponse;

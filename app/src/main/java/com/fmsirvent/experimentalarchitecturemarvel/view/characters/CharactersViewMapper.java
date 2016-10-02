@@ -1,7 +1,7 @@
 package com.fmsirvent.experimentalarchitecturemarvel.view.characters;
 
-import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
-import com.fmsirvent.experimentalarchitecturemarvel.logic.images.MarvelImage;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelCharacter;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelImage;
 import com.fmsirvent.experimentalarchitecturemarvel.view.images.ImageViewMapper;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.fmsirvent.experimentalarchitecturemarvel.repository.local.favouritecharacter;
 
-import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelCharacter;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.exceptions.RepositoryException;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.local.base.ObservableDatabase;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.local.orm.FavouriteCharactersORMController;

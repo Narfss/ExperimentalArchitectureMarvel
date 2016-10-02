@@ -1,5 +1,6 @@
-package com.fmsirvent.experimentalarchitecturemarvel.logic.images;
+package com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters;
 
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelImage;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.ImageResponse;
 
 import java.util.ArrayList;

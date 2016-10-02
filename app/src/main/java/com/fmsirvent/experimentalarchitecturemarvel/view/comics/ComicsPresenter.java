@@ -3,7 +3,7 @@ package com.fmsirvent.experimentalarchitecturemarvel.view.comics;
 import android.support.annotation.NonNull;
 
 import com.fmsirvent.experimentalarchitecturemarvel.logic.comics.GetCharacterComicsUseCase;
-import com.fmsirvent.experimentalarchitecturemarvel.logic.comics.MarvelComic;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelComic;
 import com.fmsirvent.experimentalarchitecturemarvel.view.characters.MarvelCharacterMVO;
 
 import java.util.ArrayList;

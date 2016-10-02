@@ -1,4 +1,4 @@
-package com.fmsirvent.experimentalarchitecturemarvel.logic.images;
+package com.fmsirvent.experimentalarchitecturemarvel.logic.dto;
 
 public class MarvelImage {
     private String path;

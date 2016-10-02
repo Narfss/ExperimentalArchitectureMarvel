@@ -1,6 +1,6 @@
 package com.fmsirvent.experimentalarchitecturemarvel.view.comics;
 
-import com.fmsirvent.experimentalarchitecturemarvel.logic.comics.MarvelComic;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelComic;
 import com.fmsirvent.experimentalarchitecturemarvel.view.images.ImageViewMapper;
 import com.fmsirvent.experimentalarchitecturemarvel.view.images.MarvelImageMVO;
 

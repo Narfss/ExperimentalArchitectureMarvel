@@ -1,6 +1,4 @@
-package com.fmsirvent.experimentalarchitecturemarvel.logic.comics;
-
-import com.fmsirvent.experimentalarchitecturemarvel.logic.images.MarvelImage;
+package com.fmsirvent.experimentalarchitecturemarvel.logic.dto;
 
 import java.util.List;
 

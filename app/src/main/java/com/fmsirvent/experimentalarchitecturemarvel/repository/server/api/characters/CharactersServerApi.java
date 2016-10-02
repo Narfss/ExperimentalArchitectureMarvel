@@ -1,7 +1,7 @@
 package com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.characters;
 
-import com.fmsirvent.experimentalarchitecturemarvel.logic.characters.MarvelCharacter;
-import com.fmsirvent.experimentalarchitecturemarvel.logic.comics.MarvelComic;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelCharacter;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelComic;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.exceptions.RepositoryException;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.EndPointFactory;
 import com.fmsirvent.experimentalarchitecturemarvel.repository.server.api.base.BaseRepository;

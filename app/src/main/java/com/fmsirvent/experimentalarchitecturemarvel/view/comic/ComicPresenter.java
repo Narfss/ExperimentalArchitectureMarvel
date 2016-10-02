@@ -3,12 +3,8 @@ package com.fmsirvent.experimentalarchitecturemarvel.view.comic;
 import android.support.annotation.NonNull;
 
 import com.fmsirvent.experimentalarchitecturemarvel.logic.comic.GetComicByIdUseCase;
-import com.fmsirvent.experimentalarchitecturemarvel.logic.comics.MarvelComic;
+import com.fmsirvent.experimentalarchitecturemarvel.logic.dto.MarvelComic;
 import com.fmsirvent.experimentalarchitecturemarvel.view.comics.ComicsViewMapper;
-import com.fmsirvent.experimentalarchitecturemarvel.view.comics.MarvelComicMVO;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 

@@ -1,6 +1,4 @@
-package com.fmsirvent.experimentalarchitecturemarvel.logic.characters;
-
-import com.fmsirvent.experimentalarchitecturemarvel.logic.images.MarvelImage;
+package com.fmsirvent.experimentalarchitecturemarvel.logic.dto;
 
 public class MarvelCharacter {
     private long id;

@@ -3,6 +3,7 @@ package com.fmsirvent.experimentalarchitecturemarvel.view.comics;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,10 +27,11 @@ import javax.inject.Inject;
 import butterknife.BindView;
 
 public class ComicsFragment extends BaseFragment implements RenderComicsView {
+    public static final int RECYCLE_COLUMNS = 2;
     @Inject ComicsPresenter presenter;
     @BindView(R.id.comics) RecyclerView recyclerView;
     private ClickableRVRendererAdapter<MarvelComicMVO> adapter;
-    private LinearLayoutManager layoutManager;
+    private GridLayoutManager layoutManager;
     private boolean loading;
 
     public static ComicsFragment newInstance() {
@@ -76,8 +78,8 @@ public class ComicsFragment extends BaseFragment implements RenderComicsView {
     }
 
     private void configureRecycleView() {
-        layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager = new GridLayoutManager(getActivity(), RECYCLE_COLUMNS);
+        layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

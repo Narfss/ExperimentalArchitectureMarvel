@@ -31,11 +31,13 @@
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/add_character"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_character_add"/>
+        android:background="@drawable/circle_background"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:src="@drawable/ic_character_add"
+        android:layout_margin="4dp"/>
 
     <FrameLayout
         android:id="@id/favourite_characters"

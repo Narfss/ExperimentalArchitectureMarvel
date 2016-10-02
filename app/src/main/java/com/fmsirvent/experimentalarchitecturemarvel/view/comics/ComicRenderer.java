@@ -13,7 +13,6 @@ import butterknife.BindView;
 
 public class ComicRenderer extends RendererButterKnife<MarvelComicMVO> {
     @BindView(R.id.comic_thumbnail) AppCompatImageView thumbnail;
-    @BindView(R.id.comic_title) AppCompatTextView name;
 
     @LayoutRes
     protected int onLayoutRequest()  {
@@ -24,16 +23,11 @@ public class ComicRenderer extends RendererButterKnife<MarvelComicMVO> {
     public void render() {
         MarvelComicMVO character = getContent();
         renderThumbnail(character.getThumbnail());
-        renderName(character);
-    }
-
-    private void renderName(MarvelComicMVO character) {
-        name.setText(character.getTitle());
     }
 
     private void renderThumbnail(MarvelImageMVO image) {
         String imageURL =
-                image.getURL(MarvelImageMVO.AspectRatio.STANDARD, MarvelImageMVO.AspectSize.MEDIUM);
+                image.getURL(MarvelImageMVO.AspectRatio.PORTRAIT, MarvelImageMVO.AspectSize.MEDIUM);
         ImageLoader.loadImage(thumbnail, imageURL);
     }
 }

@@ -44,7 +44,6 @@ public class SubscribeToFavouriteCharactersInteractor implements Runnable, Subsc
     public void run() {
         int subscribeId = favouriteCharactersLocalRepository.subscribe(observer);
         notifySubscription(subscribeId);
-        callback.onSubscribe(subscribeId);
     }
 
     private void notifySubscription(final int subscriptionId) {

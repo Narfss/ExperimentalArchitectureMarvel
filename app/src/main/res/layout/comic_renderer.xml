@@ -7,9 +7,9 @@
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/comic_thumbnail"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
+        android:layout_width="@dimen/comic_thumb_width"
+        android:layout_height="@dimen/comic_thumb_height"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="8dp"/>
+        android:layout_margin="@dimen/basic_margin"/>
 
 </FrameLayout>

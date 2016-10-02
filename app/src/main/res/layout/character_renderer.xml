@@ -3,14 +3,12 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
+    android:padding="@dimen/basic_margin"
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.fmsirvent.experimentalarchitecturemarvel.utils.CharacterAvatarView
         android:id="@+id/character_thumbnail"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
-        android:padding="4dp"/>
+        style="@style/characterAvatar" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/character_name"
@@ -19,7 +17,7 @@
         android:layout_weight="1"
         tools:text="Captain America"
         android:gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginLeft="@dimen/double_margin"
+        android:layout_marginRight="@dimen/double_margin"/>
 
 </LinearLayout>

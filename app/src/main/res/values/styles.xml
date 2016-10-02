@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="characterAvatar">
+        <item name="android:layout_width">@dimen/character_view_size</item>
+        <item name="android:layout_height">@dimen/character_view_size</item>
+        <item name="android:padding">@dimen/half_margin</item>
+    </style>
+
 </resources>

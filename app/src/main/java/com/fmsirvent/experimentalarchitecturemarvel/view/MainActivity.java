@@ -17,6 +17,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements FavouriteCharacterSelected {
     @BindView(R.id.characters_parent) View charactersParent;
+    @BindView(R.id.introduction) View introduction;
     private FavouriteCharactersFragment favouriteCharactersFragment;
     private CharactersFragment charactersFragment;
     private ComicsFragment comicsFragment;
@@ -39,6 +40,7 @@ public class MainActivity extends BaseActivity implements FavouriteCharacterSele
     }
 
     private void evaluateView() {
+        introduction.setVisibility(View.GONE);
         charactersParent.setVisibility(showCharacters ? View.VISIBLE : View.GONE);
     }
 

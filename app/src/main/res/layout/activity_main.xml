@@ -8,6 +8,13 @@
     tools:context="com.fmsirvent.experimentalarchitecturemarvel.view.MainActivity"
     android:background="@android:color/darker_gray">
 
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/introduction"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/introduction"
+        android:gravity="center"/>
+
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
@@ -31,13 +38,13 @@
 
     <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/add_character"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
+        android:layout_width="@dimen/character_view_size"
+        android:layout_height="@dimen/character_view_size"
         android:layout_alignParentBottom="true"
         android:background="@drawable/circle_background"
         android:backgroundTint="@android:color/holo_red_dark"
         android:src="@drawable/ic_character_add"
-        android:layout_margin="4dp"/>
+        android:layout_margin="@dimen/half_margin"/>
 
     <FrameLayout
         android:id="@id/favourite_characters"

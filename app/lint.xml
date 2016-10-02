@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="InvalidPackage">
+        <ignore regexp="ormlite-core-5.0" />
+        <ignore regexp=".*okio.*" />
+        <ignore regexp=".*retrofit.*" />
+    </issue>
+</lint>

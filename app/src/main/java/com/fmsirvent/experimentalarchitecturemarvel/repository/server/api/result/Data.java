@@ -29,6 +29,14 @@ public class Data<T> {
         return result;
     }
 
+    public boolean isUniqueResult() {
+        return getResult().size() == 1;
+    }
+
+    public T getFirstResult() {
+        return result.get(0);
+    }
+
     public static class Builder<T> {
         int offset;
         int limit;

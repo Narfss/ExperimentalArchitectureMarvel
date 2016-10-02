@@ -58,8 +58,8 @@ public class GetComicByIdInteractorTest extends BaseTest {
     public void shouldGetComicById() throws RepositoryException {
         doReturn(comicData).when(repository).getComicById(COMIC_ID);
         doReturn(comics).when(comicData).getResult();
-        doReturn(1).when(comics).size();
-        doReturn(comic).when(comics).get(0);
+        doReturn(true).when(comicData).isUniqueResult();
+        doReturn(comic).when(comicData).getFirstResult();
 
         interactor.execute(COMIC_ID, callback);
 

@@ -39,9 +39,8 @@ public class GetComicByIdInteractor implements Runnable, GetComicByIdUseCase {
     public void run() {
         try {
             Data<MarvelComic> charactersComicsData = comicsServerRepository.getComicById(id);
-            List<MarvelComic> result = charactersComicsData.getResult();
-            if (result.size() == 1) {
-                notifySuccess(result.get(0));
+            if (charactersComicsData.isUniqueResult()) {
+                notifySuccess(charactersComicsData.getFirstResult());
             }
         } catch (RepositoryException e) {
             e.printStackTrace();

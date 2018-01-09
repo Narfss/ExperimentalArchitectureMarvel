@@ -61,7 +61,7 @@ public class GetCharactersInteractorTest extends BaseTest {
 
         interactor.execute(OFFSET, callback);
 
-        verify(repository).getCharacters(eq(OFFSET));
+        verify(repository).getCharacters(eq(3));
         verify(callback).onData(eq(characters));
         verifyNoMoreInteractions(callback);
         verifyNoMoreInteractions(repository);
